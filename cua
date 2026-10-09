@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+ROOT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+mkdir -p "$ROOT_DIR/.build/module-cache"
+
+export SWIFT_MODULECACHE_PATH="$ROOT_DIR/.build/module-cache"
+export CLANG_MODULE_CACHE_PATH="$ROOT_DIR/.build/module-cache"
+
+exec swift "$ROOT_DIR/computer_use.swift" "$@"
